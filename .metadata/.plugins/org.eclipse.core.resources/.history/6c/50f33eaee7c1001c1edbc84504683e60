@@ -1,0 +1,53 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
+
+public class InterviewQuestion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		System.out.println("City:");
+		String city = input.nextLine();
+		System.out.println("State:");
+		String state = input.nextLine();
+		System.out.println("Zip Code:");
+		int zipCode = input.nextInt();
+		String urlStr = "http://api.openweathermap.org/geo/1.0/direct?q=";
+		String apiKey = "2f0d4394e775ce0fd6a681968bce8d0b";
+		urlStr = urlStr+city+","+state+","+zipCode+"&limit=3&appid=";
+		URL url = 
+		try {
+			url = new URL("https://api.covid19api.com/summary");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		HttpURLConnection conn = null;
+		try {
+			conn = (HttpURLConnection) url.openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.setRequestMethod("GET");
+		} catch (ProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn.connect();
+			int responsecode = conn.getResponseCode();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+}

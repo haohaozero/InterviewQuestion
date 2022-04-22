@@ -1,0 +1,51 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
+
+public class InterviewQuestion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		System.out.println("City:");
+		System.out.println("State:");
+		System.out.println("Zip Code:");
+		
+		String city = input.nextLine();
+		String state = input.nextLine();
+		int zipCode = input.nextInt();
+//		URL url = null;
+//		try {
+//			url = new URL("https://api.covid19api.com/summary");
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		HttpURLConnection conn = null;
+//		try {
+//			conn = (HttpURLConnection) url.openConnection();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			conn.setRequestMethod("GET");
+//		} catch (ProtocolException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			conn.connect();
+//			int responsecode = conn.getResponseCode();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+	
+
+}

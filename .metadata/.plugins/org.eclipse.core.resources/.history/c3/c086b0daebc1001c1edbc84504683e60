@@ -1,0 +1,56 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
+
+import org.json.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
+public class InterviewQuestion {
+
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		System.out.println("City:");
+		String city = input.nextLine();
+		System.out.println("State:");
+		String state = input.nextLine();
+		System.out.println("Zip Code:");
+		int zipCode = input.nextInt();
+		String urlStr = "http://api.openweathermap.org/geo/1.0/direct?q=";
+		String apiKey = "2f0d4394e775ce0fd6a681968bce8d0b";
+		urlStr = urlStr+city+","+state+","+zipCode+"&limit=3&appid="+apiKey;
+		System.out.println(urlStr);
+		try {
+			//Consturct url for API for geo location
+			URL url = new URL(urlStr);
+			HttpURLConnection conn = null;		
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.connect();
+			int responsecode = conn.getResponseCode();
+			if (responsecode != 200) {
+			    throw new RuntimeException("HttpResponseCode: " + responsecode);
+			} else {			  
+			    String inline = "";
+			    Scanner scanner = new Scanner(url.openStream());
+			    while (scanner.hasNext()) {
+			       inline += scanner.nextLine();
+			    }
+			    scanner.close();
+			    System.out.println(inline);
+			    //Using the JSON simple library parse the string into a json object
+			    JSONParser parse = new JSONParser();
+			    JSONObject data_obj = (JSONObject) parse.parse(inline);
+		}
+			} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
